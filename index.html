@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaël Hillion – Senior Product Designer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+  <main class="resume">
+
+    <header class="header">
+      <div class="header-left">
+        <h1 class="name">Gaël Hillion</h1>
+        <p class="subtitle">Senior Product Designer in Paris, France</p>
+      </div>
+      <div class="header-right">
+        <p class="contact">gael.hillion@gmail.com</p>
+        <a class="linkedin" href="https://www.linkedin.com/in/gaelhillion/" target="_blank" rel="noopener">linkedin.com/in/gaelhillion/</a>
+      </div>
+    </header>
+
+    <section class="intro">
+      <h2 class="section-title">Hello there <img class="lightsaber" src="favicon.png" alt="" width="14" height="14"></h2>
+      <p class="intro-text">
+        I'm Gaël, a designer at Adobe. I love taking ideas from zero to one, and to launch world-class products.
+        <br>I am also passionate about creating scalable systems that enable teams to deliver their best work.
+      </p>
+    </section>
+
+    <section class="experience">
+      <h2 class="section-title">Experience</h2>
+
+      <div class="entry">
+        <p class="date">April 2025 – Now</p>
+        <div class="details">
+          <p class="role">Senior Product Designer at Adobe</p>
+          <p class="location">Paris</p>
+          <p class="description">Working across the Substance 3D apps to improve workflows for 3D pros and their collaborators.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <p class="date">March 2023 – March 2025</p>
+        <div class="details">
+          <p class="role">Senior Product Designer at WhatsApp</p>
+          <p class="location">Paris</p>
+          <p class="description">Enabling small businesses to connect with new customers using WhatsApp. Currently leading the redesign of the Click to WhatsApp ad creation experience. I also self-started their first ad design system, which accelerates designers and ensures we launch consistent and scalable experiences.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <p class="date">June 2021 – March 2023</p>
+        <div class="details">
+          <p class="role">Senior Product Designer at Meta</p>
+          <p class="location">London</p>
+          <p class="description">Launched new ways for people to discover and share apps on Facebook, Instagram and Messenger. I designed the first Meta app installer, allowing customers to download apps with a new Meta-branded experience, and developers to bypass Apple and Google app store fees.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <p class="date">April 2019 – June 2021</p>
+        <div class="details">
+          <p class="role">Product Designer at Meta</p>
+          <p class="location">London</p>
+          <p class="description">Built tools for app developers, such as Audience Network and Ads Manager, so they could monetize their apps and acquire new users.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <p class="date">May 2018 – August 2018</p>
+        <div class="details">
+          <p class="role">Product Designer at Shopify</p>
+          <p class="location">Ottawa</p>
+          <p class="description">Focused on making payment processing an after thought for merchants, allowing them to focus on their core business instead.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <p class="date">August 2016 – January 2017</p>
+        <div class="details">
+          <p class="role">Product Designer at Star</p>
+          <p class="location">Munich</p>
+          <p class="description">Created digital and innovative solutions for companies such as Zeiss, NIO, Ford and Renault.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="education">
+      <h2 class="section-title">Education</h2>
+
+      <div class="entry">
+        <p class="date">L'École de design Nantes Atlantique</p>
+        <div class="details">
+          <p class="degree"><span class="bold">▸ Master's degree in User Experience</span> <span class="year">(2018)</span></p>
+          <p class="degree"><span class="bold">▸ Bachelor's degree in Interaction Design</span> <span class="year">(2013)</span></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <script>
+    (() => {
+      const canvas = document.getElementById('bg-canvas');
+      const ctx = canvas.getContext('2d');
+      let w, h;
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      const blobs = [
+        { x: 0.3, y: 0.3, r: 0.4, sx: 0.0003, sy: 0.0004, ox: 0, oy: 0 },
+        { x: 0.7, y: 0.6, r: 0.35, sx: -0.0004, sy: 0.0003, ox: 1000, oy: 2000 },
+        { x: 0.5, y: 0.8, r: 0.3, sx: 0.0005, sy: -0.0003, ox: 3000, oy: 1000 },
+        { x: 0.2, y: 0.6, r: 0.25, sx: -0.0003, sy: -0.0005, ox: 5000, oy: 4000 },
+      ];
+
+      function draw(t) {
+        ctx.fillStyle = '#f5f5f5';
+        ctx.fillRect(0, 0, w, h);
+
+        for (const b of blobs) {
+          const cx = (b.x + 0.15 * Math.sin(t * b.sx + b.ox)) * w;
+          const cy = (b.y + 0.15 * Math.cos(t * b.sy + b.oy)) * h;
+          const r = b.r * Math.max(w, h);
+
+          const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+          grad.addColorStop(0, '#ffffff');
+          grad.addColorStop(0.3, '#ffffff');
+          grad.addColorStop(0.6, 'rgba(255, 255, 255, 0.5)');
+          grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, w, h);
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      requestAnimationFrame(draw);
+    })();
+  </script>
+</body>
+</html>
